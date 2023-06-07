@@ -12,7 +12,7 @@
         @GeneratedValue(strategy = GenerationType.AUTO)
         private UUID id;
 
-        @Column(name = "name", nullable = false)
+        @Column(name = "name", nullable = false, length = 255)
         private String nome;
 
         @Column(name = "objetivo", nullable = false)
