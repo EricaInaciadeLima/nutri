@@ -11,8 +11,10 @@ public class LoginModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
+    
     @Column(name = "senha", nullable = false, length = 30)
     private String senha;
 

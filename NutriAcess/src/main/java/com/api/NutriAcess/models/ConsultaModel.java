@@ -1,4 +1,5 @@
 package com.api.NutriAcess.models;
+
 import jakarta.persistence.*;
 import java.sql.Time;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class ConsultaModel {
     @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "observacoes", nullable = false)
+    @Column(name = "observacoes", nullable = false, length = 1000)
     private String observacoes;
 
     // Getters e Setters
