@@ -43,8 +43,8 @@ public class FaleConoscoService {
         String mensagem = faleConoscoDtos.getMensagem();
 
 
-        if (faleConoscoDtos.getAvaliacaoEnum() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A opção não pode ficar vazia");
+        if (faleConoscoDtos.getAvaliacao() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A opção de avaliação não pode ficar vazia");
         }
         if (nomeUsuario == null || nomeUsuario.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo nome não pode estar vazio.");

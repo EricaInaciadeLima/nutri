@@ -11,14 +11,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@RestController
 public class FaleConoscoController {
 
     // Injenção de dependência
@@ -30,7 +28,7 @@ public class FaleConoscoController {
 
 
     @PostMapping("/faleconosco")
-    public ResponseEntity<Object> postFaleConosco(@RequestBody @Valid FaleConoscoDtos faleConoscoDtos,BindingResult bindingResult) {
+    public ResponseEntity<Object> postfaleconosco(@RequestBody @Valid FaleConoscoDtos faleConoscoDtos,BindingResult bindingResult) {
 
         ResponseEntity<Object> validationResult = faleConoscoService.validarFaleConosco(faleConoscoDtos);
 

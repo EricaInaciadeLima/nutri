@@ -11,13 +11,13 @@ public class FaleConoscoDtos {
     private String nomeUsuario;
 
     @NotBlank
-    private String email;
+    private String Email;
 
     @NotBlank
     private String mensagem;
 
     @NotNull
-    private FaleConoscoModel.AvaliacaoEnum avaliacaoEnum;
+    private FaleConoscoModel.Avaliacao avaliacao;
 
 
     public String getNomeUsuario() {
@@ -29,11 +29,11 @@ public class FaleConoscoDtos {
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        email = email;
+        Email = email;
     }
 
     public String getMensagem() {
@@ -44,12 +44,11 @@ public class FaleConoscoDtos {
         this.mensagem = mensagem;
     }
 
-    public FaleConoscoModel.AvaliacaoEnum getAvaliacaoEnum() {
-        return avaliacaoEnum;
+    public FaleConoscoModel.Avaliacao getAvaliacao() {
+        return avaliacao;
     }
 
-    public void setAvaliacaoEnum(FaleConoscoModel.AvaliacaoEnum avaliacaoEnum) {
-        this.avaliacaoEnum = avaliacaoEnum;
+    public void setAvaliacao(FaleConoscoModel.Avaliacao avaliacao) {this.avaliacao = avaliacao;
     }
 
 
@@ -60,8 +59,8 @@ public class FaleConoscoDtos {
         FaleConoscoModel faleConoscoModel = new FaleConoscoModel();
 
         faleConoscoModel.setNomeUsuario(this.nomeUsuario);
-        faleConoscoModel.setEmail(this.email);
-        faleConoscoModel.setAvaliacao(this.avaliacaoEnum);
+        faleConoscoModel.setEmail(this.Email);
+        faleConoscoModel.setAvaliacao(this.avaliacao);
         faleConoscoModel.setMensagem(this.mensagem);
 
 
