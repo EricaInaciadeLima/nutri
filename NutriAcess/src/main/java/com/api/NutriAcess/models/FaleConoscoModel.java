@@ -13,7 +13,7 @@ public class FaleConoscoModel {
     private UUID id;
 
     @Column(name = "avaliacao", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Avaliacao avaliacao;
 
     @Column(name = "nome_usuario", nullable = false)

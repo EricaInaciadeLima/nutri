@@ -35,9 +35,9 @@ public class PlanosService {
 
     public ResponseEntity<Object> validarPlanos(PlanosDto planosDto) {
 
-        if (planosDto.getTipo() == null || planosDto.getTipo().isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo nome não pode estar vazio.");
-        }
+       /* if (planosDto.getTipo() == null || planosDto.getTipo()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira alguns desses planos: 'PLUS', 'PREMIUM', 'FAMILIA'");
+        } */
 
         if (planosDto.getDataInicio() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Data de inicio da assinatura");
