@@ -1,7 +1,10 @@
 package com.api.NutriAcess.models;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "planos")
@@ -11,14 +14,16 @@ public class PlanosModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "tipo", nullable = false)
-    private Enum tipo;
+    @Column(name = "tipo")
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private Tipo tipo;
 
-    @Column(name = "data_inicio", nullable = false) // Mês em que o cliente fez a assinatura.
-    private LocalDate dataInicio;
+    @Column(name = "data_inicio", nullable = false)
+    private Date dataInicio;
 
-    @Column(name = "data_termino", nullable = false) // Mês em que vai terminar a assinatura do cliente.
-    private LocalDate dataTermino;
+    @Column(name = "data_termino", nullable = false)
+    private Date dataTermino;
 
     @Column(name = "descricao", nullable = false)
     private String descricao;
@@ -26,13 +31,11 @@ public class PlanosModel {
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
 
-    // Construtores, getters e setters
-
     public PlanosModel() {
     }
 
-    public PlanosModel(String tipo, LocalDate dataInicio, LocalDate dataTermino, String descricao, BigDecimal valor) {
-        this.tipo= tipo;
+    public PlanosModel(Tipo tipo, Date dataInicio, Date dataTermino, String descricao, BigDecimal valor) {
+        this.tipo = tipo;
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
         this.descricao = descricao;
@@ -47,27 +50,27 @@ public class PlanosModel {
         this.id = id;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
-    public LocalDate getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(LocalDate dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public LocalDate getDataTermino() {
+    public Date getDataTermino() {
         return dataTermino;
     }
 
-    public void setDataTermino(LocalDate dataTermino) {
+    public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
     }
 
@@ -85,5 +88,11 @@ public class PlanosModel {
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    public enum Tipo {
+        PLUS,
+        PREMIUM,
+        FAMILIA
     }
 }

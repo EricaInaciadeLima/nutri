@@ -1,20 +1,23 @@
 package com.api.NutriAcess.dtos;
 
+import com.api.NutriAcess.models.PlanosModel;
+import jakarta.persistence.EnumType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class PlanosDto {
 
     @NotBlank
-    private String tipo;
+    private PlanosModel.Tipo tipo;
 
     @NotNull
-    private LocalDate dataInicio;
+    private Date dataInicio;
 
     @NotNull
-    private LocalDate dataTermino;
+    private Date dataTermino;
 
     @NotBlank
     private String descricao;
@@ -24,7 +27,7 @@ public class PlanosDto {
 
     // Construtores, getters e setters
 
-    public PlanosDto(String tipo, LocalDate dataInicio, LocalDate dataTermino, String descricao, BigDecimal valor) {
+    public PlanosDto(PlanosModel.Tipo tipo, Date dataInicio, Date dataTermino, String descricao, BigDecimal valor) {
         this.tipo = tipo;
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
@@ -32,27 +35,27 @@ public class PlanosDto {
         this.valor = valor;
     }
 
-    public String getTipo() {
+    public PlanosModel.Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(PlanosModel.Tipo tipo) {
         this.tipo = tipo;
     }
 
-    public LocalDate getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(LocalDate dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public LocalDate getDataTermino() {
+    public Date getDataTermino() {
         return dataTermino;
     }
 
-    public void setDataTermino(LocalDate dataTermino) {
+    public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
     }
 
@@ -71,4 +74,15 @@ public class PlanosDto {
     public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
+
+    public PlanosModel parseToEntity() {
+        PlanosModel planosModel = new PlanosModel();
+        planosModel.setDataInicio(this.dataInicio);
+        planosModel.setTipo(this.tipo);
+        planosModel.setDescricao(this.descricao);
+        planosModel.setDataTermino(this.dataTermino);
+        planosModel.setValor(this.valor);
+        return planosModel;
+    }
+
 }
