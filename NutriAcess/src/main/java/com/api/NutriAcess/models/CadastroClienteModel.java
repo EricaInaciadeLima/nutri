@@ -1,7 +1,6 @@
 package com.api.NutriAcess.models;
 
 import jakarta.persistence.*;
-import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
