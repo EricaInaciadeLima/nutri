@@ -1,7 +1,6 @@
 package com.api.NutriAcess.services;
 
 import com.api.NutriAcess.dtos.ConsultaDto;
-import com.api.NutriAcess.models.CadastroClienteModel;
 import com.api.NutriAcess.models.ConsultaModel;
 
 import com.api.NutriAcess.repositories.ConsultaRepository;

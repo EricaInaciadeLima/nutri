@@ -1,19 +1,13 @@
 package com.api.NutriAcess.services;
 
-import com.api.NutriAcess.dtos.ConsultaDto;
 import com.api.NutriAcess.dtos.FaleConoscoDtos;
-import com.api.NutriAcess.models.ConsultaModel;
 import com.api.NutriAcess.models.FaleConoscoModel;
 import com.api.NutriAcess.repositories.FaleConoscoRepository;
 import jakarta.transaction.Transactional;
-import org.hibernate.type.descriptor.converter.internal.OrdinalEnumValueConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import java.sql.Time;
-import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 

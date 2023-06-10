@@ -1,29 +1,22 @@
 package com.api.NutriAcess.models;
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.UUID;
 
 @Entity
-@Table(name = "planos")
+@Table(name = "plano")
 public class PlanosModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   private UUID id;
 
-    @Column(name = "tipo")
+    @Column(name = "tipo", nullable = false)
     @Enumerated(EnumType.STRING)
-    @NotNull
     private Tipo tipo;
 
-    @Column(name = "data_inicio", nullable = false)
-    private Date dataInicio;
-
-    @Column(name = "data_termino", nullable = false)
-    private Date dataTermino;
+    @Column(name = "duracao", nullable = false)
+    private String duracao;
 
     @Column(name = "descricao", nullable = false)
     private String descricao;
@@ -34,22 +27,13 @@ public class PlanosModel {
     public PlanosModel() {
     }
 
-    public PlanosModel(Tipo tipo, Date dataInicio, Date dataTermino, String descricao, BigDecimal valor) {
-        this.tipo = tipo;
-        this.dataInicio = dataInicio;
-        this.dataTermino = dataTermino;
-        this.descricao = descricao;
-        this.valor = valor;
-    }
-
-    public Long getId() {
+  public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
-
     public Tipo getTipo() {
         return tipo;
     }
@@ -58,20 +42,12 @@ public class PlanosModel {
         this.tipo = tipo;
     }
 
-    public Date getDataInicio() {
-        return dataInicio;
+    public String getDuracao() {
+        return duracao;
     }
 
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public Date getDataTermino() {
-        return dataTermino;
-    }
-
-    public void setDataTermino(Date dataTermino) {
-        this.dataTermino = dataTermino;
+    public void setDuracao(String duracao) {
+        this.duracao = duracao;
     }
 
     public String getDescricao() {
@@ -92,7 +68,7 @@ public class PlanosModel {
 
     public enum Tipo {
         PLUS,
-        PREMIUM,
-        FAMILIA
+        FAMILIA,
+        PREMIUM
     }
 }
