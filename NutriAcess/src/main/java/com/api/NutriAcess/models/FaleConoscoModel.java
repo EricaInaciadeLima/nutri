@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Fale Conosco")
+@Table(name = "Fale_Conosco")
 public class FaleConoscoModel {
 
     @Id
@@ -14,7 +14,7 @@ public class FaleConoscoModel {
 
     @Column(name = "avaliacao", nullable = false)
     @Enumerated(EnumType.ORDINAL)
-    private AvaliacaoEnum avaliacao;
+    private Avaliacao avaliacao;
 
     @Column(name = "nome_usuario", nullable = false)
     private String nomeUsuario;
@@ -25,17 +25,28 @@ public class FaleConoscoModel {
     @Column(name = "mensagem", nullable = false, length = 700)
     private String mensagem;
 
-    public enum AvaliacaoEnum {
-        ZERO,
-        UM,
-        DOIS,
-        TRÊS,
-        CINCO,
-        SEIS,
-        SETE,
-        OITO,
-        NOVE,
-        DEZ
+    public enum Avaliacao{
+       DESCONHECIDO(-1),
+        ZERO(0),
+        UM(1),
+        DOIS(2),
+        TRES(3),
+        CINCO(5),
+        SEIS(6),
+        SETE(7),
+        OITO(8),
+        NOVE(9),
+        DEZ(10);
+
+        private final int Valor;
+
+        Avaliacao(int Valor) {
+            this.Valor = Valor;
+        }
+
+        public int getvalor() {
+            return Valor;
+        }
     }
 
     public UUID getId() {
@@ -46,11 +57,11 @@ public class FaleConoscoModel {
         this.id = id;
     }
 
-    public AvaliacaoEnum getAvaliacao() {
+    public Avaliacao getAvaliacao() {
         return avaliacao;
     }
 
-    public void setAvaliacao(AvaliacaoEnum avaliacao) {
+    public void setAvaliacao(Avaliacao avaliacao) {
         this.avaliacao = avaliacao;
     }
 
@@ -78,5 +89,4 @@ public class FaleConoscoModel {
         this.mensagem = mensagem;
     }
 }
-
 
