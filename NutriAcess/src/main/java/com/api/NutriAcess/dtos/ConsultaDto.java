@@ -9,16 +9,16 @@ import java.util.Date;
 
 public class ConsultaDto {
 
-    @NotNull
+    @NotNull(message = "O campo data é obrigatório.")
     private Date data;
 
-    @NotNull
+    @NotNull(message = "O campo hora é obrigatório.")
     private Time hora;
 
-    @NotBlank
+    @NotBlank(message ="O campo status é obrigatório.")
     private String status;
 
-    @NotBlank
+    @NotBlank(message = "O campo observações é obrigatório.")
     private String observacoes;
 
     public Date getData() {

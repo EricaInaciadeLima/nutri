@@ -32,26 +32,7 @@ public class ConsultaService {
     }
     //Validar os campos e irá retornar null se estiver tudo ok.
     public ResponseEntity<Object> validarConsulta(ConsultaDto consultaDto) {
-        Date data = consultaDto.getData();
-        Time hora = consultaDto.getHora();
-        String status = consultaDto.getStatus();
-        String observacoes = consultaDto.getObservacoes();
 
-        if (data == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo data é obrigatório.");
-        }
-
-        if (hora == null ) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo hora é obrigatório.");
-        }
-
-        if (status == null || status.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo status é obrigatório.");
-        }
-
-        if (observacoes == null || observacoes.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo observações é obrigatório.");
-        }
 
         return null;
     }

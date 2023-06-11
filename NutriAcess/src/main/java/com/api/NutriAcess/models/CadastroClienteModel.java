@@ -22,6 +22,7 @@ public class CadastroClienteModel {
 
     @Column(name = "senha", nullable = false, length = 30)
     private String senha;
+    
 
     public UUID getId() {
         return id;

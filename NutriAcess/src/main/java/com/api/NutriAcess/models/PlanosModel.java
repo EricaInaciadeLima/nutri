@@ -24,9 +24,7 @@ public class PlanosModel {
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
 
-    public PlanosModel() {
-    }
-
+  
   public UUID getId() {
         return id;
     }

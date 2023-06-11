@@ -1,20 +1,25 @@
 package com.api.NutriAcess.dtos;
 
 import com.api.NutriAcess.models.CadastroClienteModel;
+
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class CadastroClienteDto {
 
-    @NotBlank
+    @NotBlank(message = "O campo nome completo é obrigatório.")
     private String nomeCompleto;
 
-    @NotBlank
+    @NotBlank(message = "O campo nome social é obrigatório.")
     private String nomeSocial;
 
-    @NotBlank
+    @NotBlank(message = "O campo de e-mail é obrigatório.")
+    @Email(message = "O campo de e-mail está em um formato inválido.")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "O campo de senha é obrigatório.")
+    @Size(min = 6, max = 12, message = "O campo senha deve ter entre 6 e 12 caracteres")
     private String senha;
 
     public String getNomeCompleto() {

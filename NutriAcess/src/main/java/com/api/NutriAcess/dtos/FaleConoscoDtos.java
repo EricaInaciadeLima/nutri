@@ -7,16 +7,16 @@ import jakarta.validation.constraints.NotNull;
 
 public class FaleConoscoDtos {
 
-    @NotBlank
+    @NotBlank(message = "A opção de avaliação não pode ficar vazia")
     private String nomeUsuario;
 
-    @NotBlank
+    @NotBlank(message = "O campo email não pode estar vazio.")
     private String Email;
 
-    @NotBlank
+    @NotBlank(message = "O campo de Mensagem não pode estar vazio.")
     private String mensagem;
 
-    @NotNull
+    @NotNull(message = "A opção de avaliação não pode ficar vazia")
     private FaleConoscoModel.Avaliacao avaliacao;
 
 

@@ -48,6 +48,10 @@
         @Column(name = "foto")
         private byte[] foto;
 
+        @ManyToOne
+        @JoinColumn(name = "id_client")
+        private CadastroClienteModel cadastroClienteModel;
+
         // Getters e Setters
 
         public UUID getId() {
@@ -148,6 +152,13 @@
             this.foto = foto;
             return this;
         }
+    public CadastroClienteModel getCadastroClienteModel() {
+        return cadastroClienteModel;
+    }
+
+    public void setCadastroClienteModel(CadastroClienteModel cadastroClienteModel) {
+        this.cadastroClienteModel = cadastroClienteModel;
+    }
     // Enums para objetivo, genero, alimentacao, restricao_alimentar e tempo_preparo
 
         public enum Objetivo {

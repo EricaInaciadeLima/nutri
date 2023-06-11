@@ -8,34 +8,40 @@ import jakarta.validation.constraints.Positive;
 
 public class FormularioDto {
 
-    @NotBlank
+    @NotBlank(message = "O campo nome não pode estar vazio.")
     private String nome;
 
-    @NotNull
+    @NotNull(message = "O campo objetivo não pode estar vazio.")
     private FormularioModel.Objetivo objetivo;
 
-    @NotNull
+    @NotNull(message = "O campo gênero não pode estar vazio.")
     private FormularioModel.Genero genero;
 
-    @Positive
+    @NotNull(message = "O campo altura não pode estar vazio.")
+    @Positive(message = "A altura deve ser um valor positivo.")
+    @Min(value = 0, message = "A altura deve ser maior que 0.")
     private double altura;
 
-    @Min(value = 0)
+    @NotNull(message = "O campo idade não pode estar vazio.")
+    @Positive(message = "A idade deve ser um valor positivo.")
+    @Min(value = 0, message = "A idade deve ser maior que 0.")
     private int idade;
 
-    @Positive
+    @NotNull(message = "O campo peso não pode estar vazio.")
+    @Positive(message = "O peso deve ser um valor positivo.")
+    @Min(value = 0, message = "A peso deve ser maior que 0.")
     private double peso;
 
-    @NotNull
+    @NotNull(message = "O campo alimentação não pode estar vazio.")
     private FormularioModel.Alimentacao alimentacao;
 
-    @NotNull
+    @NotNull(message = "O campo restrição alimentar não pode estar vazio.")
     private FormularioModel.RestricaoAlimentar restricaoAlimentar;
 
-    @NotNull
+    @NotNull(message = "O campo tempo de preparo não pode estar vazio.")
     private FormularioModel.TempoPreparo tempoPreparo;
 
-    @NotNull
+    @NotNull(message = "O campo foto não pode estar vazio.")
     private byte[] foto;
 
     public String getNome() {
