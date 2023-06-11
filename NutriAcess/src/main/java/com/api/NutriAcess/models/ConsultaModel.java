@@ -29,7 +29,7 @@ public class ConsultaModel {
 
     @ManyToOne
     @JoinColumn(name = "id_client")
-    private CadastroClienteModel cadastroClienteModel;
+    private CadastroClienteModel cliente;
 
     // Getters e Setters
 
@@ -73,11 +73,11 @@ public class ConsultaModel {
         this.observacoes = observacoes;
     }
 
-    public CadastroClienteModel getCadastroClienteModel() {
-        return cadastroClienteModel;
+    public CadastroClienteModel getCliente() {
+        return cliente;
     }
 
-    public void setCadastroClienteModel(CadastroClienteModel cadastroClienteModel) {
-        this.cadastroClienteModel = cadastroClienteModel;
+    public void setCliente(CadastroClienteModel cliente) {
+        this.cliente = cliente;
     }
 }

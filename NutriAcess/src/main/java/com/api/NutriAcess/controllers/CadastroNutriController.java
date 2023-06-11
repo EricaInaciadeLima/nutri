@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -18,24 +19,27 @@ public class CadastroNutriController {
     // Injenção de dependência
     final CadastroNutriService cadastroNutriService;
 
-    public CadastroNutriController (CadastroNutriService cadastroNutriService) {
+    public CadastroNutriController(CadastroNutriService cadastroNutriService) {
         this.cadastroNutriService = cadastroNutriService;
     }
 
     @PostMapping("/cadastrar/nutricionista")
-    public ResponseEntity<Object> cadastrarNutri(@RequestBody @Valid CadastroNutriDto cadastroNutriDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> cadastrarNutri(@RequestBody @Valid CadastroNutriDto cadastroNutriDto,
+            BindingResult bindingResult) {
+        ResponseEntity<Object> validationResult = cadastroNutriService.validarCadastroNutri(cadastroNutriDto);
 
+        if (validationResult != null) {
+            return validationResult;
+        }
+
+        if (bindingResult.hasErrors()) {
+            StringBuilder errorMessage = new StringBuilder();
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                errorMessage.append(error.getDefaultMessage()).append("\n");
+            }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage.toString().trim());
+        }
         try {
-            //Conexão com a camada service e dto.
-            ResponseEntity<Object> validationResult = cadastroNutriService.validarCadastroNutri(cadastroNutriDto);
-
-            if (validationResult != null) {
-                return validationResult;
-            }
-
-            if (bindingResult.hasErrors()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bindingResult.toString());
-            }
 
             CadastroNutriModel cadastroNutriModel = cadastroNutriDto.parseToEntity();
 
@@ -46,12 +50,4 @@ public class CadastroNutriController {
         }
     }
 
-    @GetMapping("/cadastro/{id_nutri}")
-    public ResponseEntity<Object> getCadastro(@PathVariable(value = "id") UUID id) {
-        Optional<CadastroNutriModel> cadastroNutriModelOptional = cadastroNutriService.findById(id);
-        if (!cadastroNutriModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cadastro não encontrado.");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(cadastroNutriModelOptional.get());
-    }
 }

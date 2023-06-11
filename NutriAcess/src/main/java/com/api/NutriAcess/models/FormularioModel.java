@@ -50,7 +50,7 @@
 
         @ManyToOne
         @JoinColumn(name = "id_client")
-        private CadastroClienteModel cadastroClienteModel;
+        private CadastroClienteModel cliente;
 
         // Getters e Setters
 
@@ -152,12 +152,12 @@
             this.foto = foto;
             return this;
         }
-    public CadastroClienteModel getCadastroClienteModel() {
-        return cadastroClienteModel;
+     public CadastroClienteModel getCliente() {
+        return cliente;
     }
 
-    public void setCadastroClienteModel(CadastroClienteModel cadastroClienteModel) {
-        this.cadastroClienteModel = cadastroClienteModel;
+    public void setCliente(CadastroClienteModel cliente) {
+        this.cliente = cliente;
     }
     // Enums para objetivo, genero, alimentacao, restricao_alimentar e tempo_preparo
 
