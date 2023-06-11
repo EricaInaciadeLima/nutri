@@ -29,11 +29,6 @@ public class PlanosService {
         return planosRepository.save(planosModel);
     }
 
-    
-    //Vai retornar uma lista de todos registros.
-//    public Page<PlanosModel> findAll(Pageable pageable) {
-//     return planosRepository.findAll(pageable);
-// }
     public Optional<PlanosModel> findById(UUID id) {
         return planosRepository.findById(id);
     }
@@ -44,17 +39,11 @@ public class PlanosService {
     if (tipo != PlanosModel.Tipo.PLUS && tipo != PlanosModel.Tipo.FAMILIA && tipo != PlanosModel.Tipo.PREMIUM) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O tipo fornecido é inválido.");
     }
-    if(planosDto.getDuracao() == null  || planosDto.getDuracao().isEmpty()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo duração não pode ficar vazio!");
-    }
+//     if (planosDto.getDuracao() == null || planosDto.getDuracao().isEmpty()) {
+//     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A duração do plano é obrigatória.");
+// }
 
-    if (planosDto.getDescricao() == null || planosDto.getDescricao().isEmpty()) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo descrição não pode ficar vazio!");
-    }
 
-    if (planosDto.getValor() == null || planosDto.getValor().compareTo(BigDecimal.ZERO) <= 0) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O valor fornecido é inválido.");
-    }
 
     return null;
 

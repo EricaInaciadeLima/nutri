@@ -27,7 +27,7 @@ public class FaleConoscoModel {
 
     @ManyToOne
     @JoinColumn(name = "id_client")
-    private CadastroClienteModel cadastroClienteModel;
+    private CadastroClienteModel cliente;
 
     public enum Avaliacao{
        DESCONHECIDO(-1),
@@ -92,12 +92,12 @@ public class FaleConoscoModel {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
-     public CadastroClienteModel getCadastroClienteModel() {
-        return cadastroClienteModel;
+   public CadastroClienteModel getCliente() {
+        return cliente;
     }
 
-    public void setCadastroClienteModel(CadastroClienteModel cadastroClienteModel) {
-        this.cadastroClienteModel = cadastroClienteModel;
+    public void setCliente(CadastroClienteModel cliente) {
+        this.cliente = cliente;
     }
 }
 

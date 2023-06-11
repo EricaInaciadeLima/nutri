@@ -20,9 +20,9 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/plano")
-public class PlanosController  {
+public class PlanosController {
 
-    //injeção de dependencias.
+    // injeção de dependencias.
 
     final PlanosService planosService;
 
@@ -31,31 +31,36 @@ public class PlanosController  {
     }
 
     @PostMapping("/plano/criar")
-    public ResponseEntity<Object> planos(@RequestBody @Valid PlanosDto planosDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> planos(@RequestBody @Valid PlanosDto planosDto,
+    BindingResult bindingResult) {
 
-        
-        ResponseEntity<Object> validationResult = planosService.validarPlanos(planosDto);
+    ResponseEntity<Object> validationResult =
+    planosService.validarPlanos(planosDto);
 
-        if (validationResult != null) {
-            return validationResult;
-        }
-
-        if (bindingResult.hasErrors()) {
-            StringBuilder errorMessage = new StringBuilder();
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errorMessage.append(error.getDefaultMessage()).append("\n");
-            }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage.toString().trim());
-        }
-
-        try {
-             PlanosModel planosModel = planosDto.parseToEntity();
-            return ResponseEntity.status(HttpStatus.CREATED).body(planosService.save(planosModel));
-           
-        } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
-        }
+    if (validationResult != null) {
+    return validationResult;
     }
+
+    if (bindingResult.hasErrors()) {
+    StringBuilder errorMessage = new StringBuilder();
+    for (FieldError error : bindingResult.getFieldErrors()) {
+    errorMessage.append(error.getDefaultMessage()).append("\n");
+    }
+    return
+    ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage.toString().trim());
+    }
+
+    try {
+    PlanosModel planosModel = planosDto.parseToEntity();
+    return
+    ResponseEntity.status(HttpStatus.CREATED).body(planosService.save(planosModel));
+
+    } catch (Exception exception) {
+    return
+    ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+    }
+    }
+ 
 
     @GetMapping("/plano/{id}")
     public ResponseEntity<Object> getPlanos(@PathVariable(value = "id") UUID id) {
@@ -65,16 +70,5 @@ public class PlanosController  {
         }
         return ResponseEntity.status(HttpStatus.OK).body(planosModelOptional.get());
     }
-//    @GetMapping
-// public ResponseEntity<Page<PlanosModel>> getAllPlanos(@PageableDefault(page = 0, size = 10) Pageable pageable) {
-//     return ResponseEntity.status(HttpStatus.OK).body(planosService.findAll(pageable));
-// }
-
-
-
-
-
-
-
 
 }
