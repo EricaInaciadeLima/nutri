@@ -1,38 +1,31 @@
 package com.api.NutriAcess.dtos;
 
 import com.api.NutriAcess.models.PlanosModel;
-
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
+import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class PlanosDto {
 
-    @NotNull
+    @NotNull(message = "O campo tipo não pode estar vazio.")
     @Enumerated(EnumType.STRING)
     private PlanosModel.Tipo tipo;
 
-    @NotNull
+    @NotBlank(message = "O campo duração não pode estar vazio.")
     private String duracao;
 
-    @NotBlank
+    @NotBlank(message = "O campo descrição não pode estar vazio.")
     private String descricao;
 
-    @NotNull
+    @NotNull(message = "O campo valor não pode estar vazio.")
+    @Positive(message = "O valor deve ser um valor positivo.")
+    @Min(value = 0, message = "O valor deve ser maior que 0.")
     private BigDecimal valor;
 
-    public PlanosDto() {
-    }
-
-    public PlanosDto(PlanosModel.Tipo tipo, String duracao, String descricao, BigDecimal valor) {
-        this.tipo = tipo;
-        this.duracao = duracao;
-        this.descricao = descricao;
-        this.valor = valor;
-    }
 
     public PlanosModel.Tipo getTipo() {
         return tipo;

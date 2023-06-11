@@ -4,6 +4,11 @@ import com.api.NutriAcess.dtos.PlanosDto;
 import com.api.NutriAcess.models.PlanosModel;
 import com.api.NutriAcess.services.PlanosService;
 import jakarta.validation.Valid;
+
+import org.springframework.data.domain.Pageable;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -14,6 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/plano")
 public class PlanosController  {
 
     //injeção de dependencias.
@@ -24,7 +30,7 @@ public class PlanosController  {
         this.planosService = planosService;
     }
 
-    @PostMapping("/plano")
+    @PostMapping("/plano/criar")
     public ResponseEntity<Object> planos(@RequestBody @Valid PlanosDto planosDto, BindingResult bindingResult) {
 
         
@@ -59,6 +65,10 @@ public class PlanosController  {
         }
         return ResponseEntity.status(HttpStatus.OK).body(planosModelOptional.get());
     }
+//    @GetMapping
+// public ResponseEntity<Page<PlanosModel>> getAllPlanos(@PageableDefault(page = 0, size = 10) Pageable pageable) {
+//     return ResponseEntity.status(HttpStatus.OK).body(planosService.findAll(pageable));
+// }
 
 
 

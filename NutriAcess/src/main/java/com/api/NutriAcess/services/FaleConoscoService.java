@@ -32,23 +32,7 @@ public class FaleConoscoService {
 
 
     public ResponseEntity<Object> validarFaleConosco(FaleConoscoDtos faleConoscoDtos) {
-        String nomeUsuario = faleConoscoDtos.getNomeUsuario();
-        String email  = faleConoscoDtos.getEmail();
-        String mensagem = faleConoscoDtos.getMensagem();
-
-
-        if (faleConoscoDtos.getAvaliacao() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A opção de avaliação não pode ficar vazia");
-        }
-        if (nomeUsuario == null || nomeUsuario.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo nome não pode estar vazio.");
-        }
-        if (email == null || email.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo email não pode estar vazio.");
-        }
-        if (mensagem == null || mensagem.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo de Mensagem não pode estar vazio.");
-        }
+       
         return null;
     }
 }
