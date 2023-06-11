@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/fale-conosco")
 public class FaleConoscoController {
 
     // Injenção de dependência
@@ -24,7 +25,7 @@ public class FaleConoscoController {
     }
 
 
-    @PostMapping("/faleconosco")
+    @PostMapping("/criar")
     public ResponseEntity<Object> postfaleconosco(@RequestBody @Valid FaleConoscoDtos faleConoscoDtos,BindingResult bindingResult) {
 
         ResponseEntity<Object> validationResult = faleConoscoService.validarFaleConosco(faleConoscoDtos);
@@ -49,7 +50,7 @@ public class FaleConoscoController {
         }
     }
 
-    @GetMapping("/fale-conosco/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getFaleConosco(@PathVariable(value = "id") UUID id) {
         Optional<FaleConoscoModel> faleConoscoModelOptional = faleConoscoService.findById(id);
         if (!faleConoscoModelOptional.isPresent()) {

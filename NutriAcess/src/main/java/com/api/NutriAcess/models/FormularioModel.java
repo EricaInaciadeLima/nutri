@@ -32,11 +32,11 @@
         @Column(name = "peso", nullable = false)
         private double peso;
 
-        @Column(name = "alimentacao")
+        @Column(name = "alimentacao", nullable = false)
         @Enumerated(EnumType.STRING)
         private Alimentacao alimentacao;
 
-        @Column(name = "restricao_alimentar")
+        @Column(name = "restricao_alimentar", nullable = false)
         @Enumerated(EnumType.STRING)
         private RestricaoAlimentar restricaoAlimentar;
 

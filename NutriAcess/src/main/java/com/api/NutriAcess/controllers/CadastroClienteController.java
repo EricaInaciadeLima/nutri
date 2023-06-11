@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/cliente")
 public class CadastroClienteController {
     // Injenção de dependência
     final CadastroClienteService cadastroClienteService;
@@ -22,7 +23,7 @@ public class CadastroClienteController {
         this.cadastroClienteService = cadastroClienteService;
     }
 
-    @PostMapping("/cadastrar/cliente")
+    @PostMapping("/cadastrar")
     public ResponseEntity<Object> cadastrarCliente(@RequestBody @Valid CadastroClienteDto cadastroClienteDto,
             BindingResult bindingResult) {
         ResponseEntity<Object> validationResult = cadastroClienteService.validarCadastroCliente(cadastroClienteDto);

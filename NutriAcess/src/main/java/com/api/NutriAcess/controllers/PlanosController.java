@@ -21,16 +21,14 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/plano")
 public class PlanosController {
-
     // injeção de dependencias.
-
     final PlanosService planosService;
 
     public PlanosController(PlanosService planosService) {
         this.planosService = planosService;
     }
 
-    @PostMapping("/plano/criar")
+    @PostMapping("/criar")
     public ResponseEntity<Object> planos(@RequestBody @Valid PlanosDto planosDto,
     BindingResult bindingResult) {
 
@@ -62,7 +60,7 @@ public class PlanosController {
     }
  
 
-    @GetMapping("/plano/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getPlanos(@PathVariable(value = "id") UUID id) {
         Optional<PlanosModel> planosModelOptional = planosService.findById(id);
         if (!planosModelOptional.isPresent()) {

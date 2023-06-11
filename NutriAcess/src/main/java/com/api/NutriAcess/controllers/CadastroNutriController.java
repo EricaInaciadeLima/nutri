@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/nutricionista")
 public class CadastroNutriController {
 
     // Injenção de dependência
@@ -23,7 +24,7 @@ public class CadastroNutriController {
         this.cadastroNutriService = cadastroNutriService;
     }
 
-    @PostMapping("/cadastrar/nutricionista")
+    @PostMapping("/cadastrar")
     public ResponseEntity<Object> cadastrarNutri(@RequestBody @Valid CadastroNutriDto cadastroNutriDto,
             BindingResult bindingResult) {
         ResponseEntity<Object> validationResult = cadastroNutriService.validarCadastroNutri(cadastroNutriDto);
