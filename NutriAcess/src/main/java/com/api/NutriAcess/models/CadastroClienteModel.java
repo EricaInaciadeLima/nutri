@@ -22,6 +22,10 @@ public class CadastroClienteModel {
 
     @Column(name = "senha", nullable = false, length = 30)
     private String senha;
+
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+private ConsultaModel consulta;
+
     
 
     public UUID getId() {

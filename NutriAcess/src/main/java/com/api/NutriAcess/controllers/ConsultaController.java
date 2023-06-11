@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/consulta")
 public class ConsultaController {
     // Injenção de dependência
     final ConsultaService consultaService;
@@ -22,7 +23,7 @@ public class ConsultaController {
         this.consultaService = consultaService;
     }
 
-    @PostMapping("/consulta/criar")
+    @PostMapping("/criar")
     public ResponseEntity<Object> consulta(@RequestBody @Valid ConsultaDto consultaDto, BindingResult bindingResult) {
         // Conexão com a camada service e dto.
         ResponseEntity<Object> validationResult = consultaService.validarConsulta(consultaDto);
@@ -48,7 +49,7 @@ public class ConsultaController {
         }
     }
 
-    @GetMapping("/consulta/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getConsulta(@PathVariable(value = "id") UUID id) {
         Optional<ConsultaModel> consultaModelOptional = consultaService.findById(id);
         if (!consultaModelOptional.isPresent()) {

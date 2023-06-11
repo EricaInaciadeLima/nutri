@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/formulario")
 public class FormularioController {
     // Injenção de dependência
     final FormularioService formularioService;
@@ -23,7 +24,7 @@ public class FormularioController {
         this.formularioService = formularioService;
     }
 
-    @PostMapping("/formulario")
+    @PostMapping("/criar")
     public ResponseEntity<Object> postFormulario(@RequestBody @Valid FormularioDto formularioDto, BindingResult bindingResult) {
 
         ResponseEntity<Object> validationResult = formularioService.validarFormulario(formularioDto);
@@ -49,7 +50,7 @@ public class FormularioController {
         }
     }
 
-    @GetMapping("/formulario/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getFormulario(@PathVariable(value = "id") UUID id) {
         Optional<FormularioModel> formularioModelOptional = formularioService.findById(id);
         if (!formularioModelOptional.isPresent()) {

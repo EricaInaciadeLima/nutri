@@ -39,10 +39,6 @@ public class PlanosService {
     if (tipo != PlanosModel.Tipo.PLUS && tipo != PlanosModel.Tipo.FAMILIA && tipo != PlanosModel.Tipo.PREMIUM) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O tipo fornecido é inválido.");
     }
-//     if (planosDto.getDuracao() == null || planosDto.getDuracao().isEmpty()) {
-//     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A duração do plano é obrigatória.");
-// }
-
 
 
     return null;
