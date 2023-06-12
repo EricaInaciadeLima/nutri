@@ -1,6 +1,9 @@
 package com.api.NutriAcess.models;
 
 import java.util.UUID;
+
+import com.api.NutriAcess.dtos.DadosAtualizacaoFamilia;
+import com.api.NutriAcess.dtos.FamiliaDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,9 +14,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Table(name = "Familia")
+@Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class FamiliaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +44,24 @@ public class FamiliaModel {
     @ManyToOne
     @JoinColumn(name = "id_client")
     private CadastroClienteModel cliente;
+
+    public void atualizarInformacoes(DadosAtualizacaoFamilia dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.idade() != null) {
+            this.idade = dados.idade();
+        }
+
+        if (dados.peso() != null) {
+            this.peso = dados.peso();
+        }
+
+        if (dados.sexo() != null) {
+            this.sexo = dados.sexo();
+        }
+    }
 
     public enum Sexo {
         MASCULINO,
