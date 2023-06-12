@@ -1,39 +1,36 @@
 package com.api.NutriAcess.dtos;
 
+import com.api.NutriAcess.models.CadastroClienteModel;
 import com.api.NutriAcess.models.PlanosModel;
-import jakarta.persistence.EnumType;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 
 public class PlanosDto {
 
-    @NotBlank
+
+    @NotNull(message = "O campo tipo não pode estar vazio.")
+    @Enumerated(EnumType.STRING)
     private PlanosModel.Tipo tipo;
 
-    @NotNull
-    private Date dataInicio;
+    @NotBlank(message = "O campo duração não pode estar vazio.")
+    private String duracao;
 
-    @NotNull
-    private Date dataTermino;
-
-    @NotBlank
+    @NotBlank(message = "O campo descrição não pode estar vazio.")
     private String descricao;
 
-    @NotNull
+    @NotNull(message = "O campo valor não pode estar vazio.")
+    @Positive(message = "O valor deve ser um valor positivo.")
+    @Min(value = 0, message = "O valor deve ser maior que 0.")
     private BigDecimal valor;
 
-    // Construtores, getters e setters
-
-    public PlanosDto(PlanosModel.Tipo tipo, Date dataInicio, Date dataTermino, String descricao, BigDecimal valor) {
-        this.tipo = tipo;
-        this.dataInicio = dataInicio;
-        this.dataTermino = dataTermino;
-        this.descricao = descricao;
-        this.valor = valor;
-    }
 
     public PlanosModel.Tipo getTipo() {
         return tipo;
@@ -43,20 +40,12 @@ public class PlanosDto {
         this.tipo = tipo;
     }
 
-    public Date getDataInicio() {
-        return dataInicio;
+    public String getDuracao() {
+        return duracao;
     }
 
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public Date getDataTermino() {
-        return dataTermino;
-    }
-
-    public void setDataTermino(Date dataTermino) {
-        this.dataTermino = dataTermino;
+    public void setDuracao(String duracao) {
+        this.duracao = duracao;
     }
 
     public String getDescricao() {
@@ -77,10 +66,9 @@ public class PlanosDto {
 
     public PlanosModel parseToEntity() {
         PlanosModel planosModel = new PlanosModel();
-        planosModel.setDataInicio(this.dataInicio);
         planosModel.setTipo(this.tipo);
+        planosModel.setDuracao(this.duracao);
         planosModel.setDescricao(this.descricao);
-        planosModel.setDataTermino(this.dataTermino);
         planosModel.setValor(this.valor);
         return planosModel;
     }

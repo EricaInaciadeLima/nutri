@@ -1,10 +1,15 @@
 package com.api.NutriAcess.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.UUID;
 
 @Entity
 @Table(name = "cadastro_cliente")
+@Getter
+@Setter
 public class CadastroClienteModel {
 
     @Id
@@ -22,6 +27,7 @@ public class CadastroClienteModel {
 
     @Column(name = "senha", nullable = false, length = 30)
     private String senha;
+
 
     public UUID getId() {
         return id;

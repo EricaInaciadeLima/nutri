@@ -28,33 +28,22 @@ public class PlanosService {
         return planosRepository.save(planosModel);
     }
 
-    //Vai retornar uma lista de todos registros.
     public Optional<PlanosModel> findById(UUID id) {
         return planosRepository.findById(id);
     }
 
     public ResponseEntity<Object> validarPlanos(PlanosDto planosDto) {
 
-       /* if (planosDto.getTipo() == null || planosDto.getTipo()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insira alguns desses planos: 'PLUS', 'PREMIUM', 'FAMILIA'");
-        } */
-
-        if (planosDto.getDataInicio() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Data de inicio da assinatura");
+        PlanosModel.Tipo tipo = planosDto.getTipo();
+        if (tipo != PlanosModel.Tipo.PLUS && tipo != PlanosModel.Tipo.FAMILIA && tipo != PlanosModel.Tipo.PREMIUM) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O tipo fornecido é inválido.");
         }
+//     if (planosDto.getDuracao() == null || planosDto.getDuracao().isEmpty()) {
+//     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A duração do plano é obrigatória.");
+// }
 
-        if (planosDto.getDataTermino() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Data de termino da assinatura");
-        }
-
-        if ( planosDto.getDescricao() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("descrição invalida");
-        }
-
-        if (planosDto.getValor() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Valor");
-        }
         return null;
+
     }
 
 }

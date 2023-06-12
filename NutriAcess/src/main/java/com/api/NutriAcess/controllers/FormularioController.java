@@ -43,6 +43,7 @@ public class FormularioController {
         try {
             FormularioModel formularioModel = formularioDto.parseToEntity();
             return ResponseEntity.status(HttpStatus.CREATED).body(formularioService.save(formularioModel));
+
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
         }

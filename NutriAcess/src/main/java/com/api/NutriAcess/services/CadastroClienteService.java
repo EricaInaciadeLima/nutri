@@ -33,25 +33,7 @@ public class CadastroClienteService {
     //Validar os campos e irá retornar null se estiver tudo ok.
     public ResponseEntity<Object> validarCadastroCliente(CadastroClienteDto cadastroClienteDto) {
         String email = cadastroClienteDto.getEmail();
-        String senha = cadastroClienteDto.getSenha();
-        String nomeCompleto = cadastroClienteDto.getNomeCompleto();
-        String nomeSocial = cadastroClienteDto.getNomeSocial();
 
-        if (senha.length() < 6) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Senha precisa ter no mínimo 6 caracteres.");
-        }
-
-        if (nomeCompleto == null || nomeCompleto.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo nome completo é obrigatório.");
-        }
-
-        if (nomeSocial == null || nomeSocial.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo nome social é obrigatório.");
-        }
-
-        if (email.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O campo de e-mail é obrigatório.");
-        }
         if (existsByCadastroClienteEmail(email)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email já cadastrado.");
         }
