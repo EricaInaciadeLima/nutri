@@ -4,6 +4,8 @@
 
     import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
     @Entity
     @Table(name = "formulario")
     public class FormularioModel {
@@ -162,8 +164,13 @@
     // Enums para objetivo, genero, alimentacao, restricao_alimentar e tempo_preparo
 
         public enum Objetivo {
+            @JsonProperty("PERDER PESO")
             PERDER_PESO,
+
+            @JsonProperty("MANTER PESO ATUAL")
             MANTER_PESO_ATUAL,
+
+            @JsonProperty("GANHAR MASSA MUSCULAR")
             GANHAR_MASSA_MUSCULAR
         }
 
@@ -174,14 +181,25 @@
         }
 
         public enum Alimentacao {
+            @JsonProperty("SEDENTARISMO")
             SEDENTARISMO,
+
+            @JsonProperty("ATIVIDADE FISICA MODERADA")
             ATIVIDADE_FISICA_MODERADA,
+
+            @JsonProperty("ATIVIDADE FISICA INTENSIVA")
             ATIVIDADE_FISICA_INTENSIVA
         }
 
+
         public enum RestricaoAlimentar {
+            @JsonProperty("QUALQUER COISA")
             QUALQUER_COISA,
+
+            @JsonProperty("SOU VEGETARIANO")
             SOU_VEGETARIANO,
+
+            @JsonProperty("SOU VEGANO")
             SOU_VEGANO
         }
 

@@ -67,6 +67,7 @@ public class PlanosModel {
     public enum Tipo {
         PLUS,
         FAMILIA,
-        PREMIUM
+        PREMIUM;
+
     }
 }

@@ -20,11 +20,11 @@ public class CadastroNutriDto {
     private String email;
 
     @NotBlank(message = "O campo de senha é obrigatório.")
-    @Size(min = 6, max = 12, message = "O campo senha deve ter entre 6 e 12 caracteres")
+    @Size(min = 6, max = 12, message = "O campo senha deve ter entre 6 e 12 caracteres.")
     private String senha;
 
-    @NotBlank(message = "Crn inválido" )
-    @Size(min = 9, max = 9, message = "O campo crn deve ter entre 1 e 10 caracteres")
+    @NotBlank(message = "Crn inválido." )
+    @Size(min = 9, max = 9, message = "O campo crn inválido.")
     private String crn;
 
     public String getNomeCompleto() {

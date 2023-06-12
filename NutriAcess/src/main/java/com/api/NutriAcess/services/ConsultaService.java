@@ -2,9 +2,12 @@ package com.api.NutriAcess.services;
 
 import com.api.NutriAcess.dtos.ConsultaDto;
 import com.api.NutriAcess.models.ConsultaModel;
-
+import com.api.NutriAcess.models.FaleConoscoModel;
 import com.api.NutriAcess.repositories.ConsultaRepository;
 import jakarta.transaction.Transactional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,14 @@ public class ConsultaService {
 
     public Optional<ConsultaModel> findById(UUID id) {
         return consultaRepository.findById(id);
+    }
+    @Transactional
+    public void delete(ConsultaModel consultaModel) {
+        consultaRepository.delete(consultaModel);
+    }
+
+    public Page<ConsultaModel> findAll(Pageable pageable) {
+        return consultaRepository.findAll(pageable);
     }
     //Validar os campos e irá retornar null se estiver tudo ok.
     public ResponseEntity<Object> validarConsulta(ConsultaDto consultaDto) {
