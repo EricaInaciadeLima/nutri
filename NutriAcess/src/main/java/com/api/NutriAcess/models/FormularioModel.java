@@ -46,9 +46,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
         @Enumerated(EnumType.STRING)
         private TempoPreparo tempoPreparo;
 
-        @Lob
+       
         @Column(name = "foto")
-        private byte[] foto;
+        private String foto;
 
         @ManyToOne
         @JoinColumn(name = "id_client")
@@ -146,11 +146,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
             return this;
         }
 
-        public byte[] getFoto() {
+        public String getFoto() {
             return foto;
         }
 
-        public FormularioModel setFoto(byte[] foto) {
+        public FormularioModel setFoto(String foto) {
             this.foto = foto;
             return this;
         }
