@@ -3,12 +3,16 @@ package com.api.NutriAcess.controllers;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.api.NutriAcess.dtos.DadosAtualizacaoFamilia;
+import com.api.NutriAcess.repositories.FamiliaRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +35,9 @@ import jakarta.validation.Valid;
 public class FamiliaController {
   // injeção de dependências.
   private final FamiliaService familiaService;
+
+  @Autowired
+  private FamiliaRepository familiaRepository;
 
   public FamiliaController(FamiliaService familiaService) {
     this.familiaService = familiaService;
@@ -83,6 +90,13 @@ public class FamiliaController {
     return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso.");
   }
 
+<<<<<<< HEAD
+  @PutMapping
+  @Transactional
+  public void atualizar(@RequestBody @Valid DadosAtualizacaoFamilia dados) {
+    var familia = familiaRepository.getReferenceById(UUID.fromString(dados.getId()));
+     familia.atualizarInformacoes(dados);
+=======
   @PutMapping("/{id}")
   public ResponseEntity<Object> updateFamilia(@PathVariable(value = "id") UUID id,
       @RequestBody @Valid FamiliaDto familiaDto) {
@@ -96,6 +110,7 @@ public class FamiliaController {
     familiaModel.setId(familiaModelOptional.get().getId());
 
     return ResponseEntity.status(HttpStatus.OK).body(familiaService.save(familiaModel));
+>>>>>>> 84a9da79e374252fdac2be84d2aa51fc64cf40a2
   }
   
 

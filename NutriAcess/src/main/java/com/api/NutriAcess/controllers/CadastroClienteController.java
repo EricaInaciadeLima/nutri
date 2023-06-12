@@ -2,7 +2,6 @@ package com.api.NutriAcess.controllers;
 
 import com.api.NutriAcess.dtos.CadastroClienteDto;
 import com.api.NutriAcess.models.CadastroClienteModel;
-import com.api.NutriAcess.models.CadastroNutriModel;
 import com.api.NutriAcess.services.CadastroClienteService;
 import jakarta.validation.Valid;
 
