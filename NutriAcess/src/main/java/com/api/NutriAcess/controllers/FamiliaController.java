@@ -90,10 +90,29 @@ public class FamiliaController {
     return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso.");
   }
 
+<<<<<<< HEAD
   @PutMapping
   @Transactional
   public void atualizar(@RequestBody @Valid DadosAtualizacaoFamilia dados) {
     var familia = familiaRepository.getReferenceById(UUID.fromString(dados.getId()));
      familia.atualizarInformacoes(dados);
+=======
+  @PutMapping("/{id}")
+  public ResponseEntity<Object> updateFamilia(@PathVariable(value = "id") UUID id,
+      @RequestBody @Valid FamiliaDto familiaDto) {
+    Optional<FamiliaModel> familiaModelOptional = familiaService.findById(id);
+    if (!familiaModelOptional.isPresent()) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado dados dessa família.");
+    }
+   
+    var familiaModel = new FamiliaModel();
+    BeanUtils.copyProperties(familiaDto, familiaModel);
+    familiaModel.setId(familiaModelOptional.get().getId());
+
+    return ResponseEntity.status(HttpStatus.OK).body(familiaService.save(familiaModel));
+>>>>>>> 84a9da79e374252fdac2be84d2aa51fc64cf40a2
   }
+  
+
+
 }
