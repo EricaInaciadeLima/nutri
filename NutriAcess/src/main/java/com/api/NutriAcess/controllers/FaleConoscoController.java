@@ -2,8 +2,13 @@ package com.api.NutriAcess.controllers;
 
 import com.api.NutriAcess.dtos.FaleConoscoDtos;
 import com.api.NutriAcess.models.FaleConoscoModel;
+import com.api.NutriAcess.models.PlanosModel;
 import com.api.NutriAcess.services.FaleConoscoService;
 import jakarta.validation.Valid;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -54,9 +59,26 @@ public class FaleConoscoController {
     public ResponseEntity<Object> getFaleConosco(@PathVariable(value = "id") UUID id) {
         Optional<FaleConoscoModel> faleConoscoModelOptional = faleConoscoService.findById(id);
         if (!faleConoscoModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Formulário não encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Formulário fale conosco não encontrado.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(faleConoscoModelOptional.get());
     }
+    
+    @GetMapping
+    public ResponseEntity<Page<FaleConoscoModel>> getAllFaleConosco(
+            @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(faleConoscoService.findAll(pageable));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteFaleConosco(@PathVariable(value = "id") UUID id) {
+        Optional<FaleConoscoModel> faleConoscoModelOptional = faleConoscoService.findById(id);
+        if (!faleConoscoModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado dados desse formulário fale conosco.");
+        }
+        faleConoscoService.delete(faleConoscoModelOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso.");
+    }
+
 
 }

@@ -59,7 +59,7 @@ public class FamiliaController {
   }
 
   @GetMapping
-  public ResponseEntity<Page<FamiliaModel>> getAllParkingSpots(
+  public ResponseEntity<Page<FamiliaModel>> getAllFamilia(
       @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable) {
     return ResponseEntity.status(HttpStatus.OK).body(familiaService.findAll(pageable));
   }
@@ -97,6 +97,10 @@ public class FamiliaController {
     familiaModel.setIdade(familiaDto.getIdade());
     familiaModel.setPeso(familiaDto.getPeso());
     familiaModel.setSexo(FamiliaModel.Sexo.valueOf(familiaDto.getSexo()));
+
+    // var familiaModel = new ParkingSpotModel();
+    //     BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
+    //     parkingSpotModel.setId(parkingSpotModelOptional.get().getId());
 
     return ResponseEntity.status(HttpStatus.OK).body(familiaService.save(familiaModel));
   }

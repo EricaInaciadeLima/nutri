@@ -1,6 +1,7 @@
 package com.api.NutriAcess.controllers;
 
 import com.api.NutriAcess.dtos.PlanosDto;
+import com.api.NutriAcess.models.FormularioModel;
 import com.api.NutriAcess.models.PlanosModel;
 import com.api.NutriAcess.services.PlanosService;
 import jakarta.validation.Valid;
@@ -61,12 +62,28 @@ public class PlanosController {
  
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getPlanos(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<Object> getPlano(@PathVariable(value = "id") UUID id) {
         Optional<PlanosModel> planosModelOptional = planosService.findById(id);
         if (!planosModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Plano não encontrado.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(planosModelOptional.get());
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<PlanosModel>> getAllPlano(
+            @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(planosService.findAll(pageable));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletePlano(@PathVariable(value = "id") UUID id) {
+        Optional<PlanosModel> planoModeOptional = planosService.findById(id);
+        if (!planoModeOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado dados desse plano.");
+        }
+        planosService.delete(planoModeOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso.");
     }
 
 }

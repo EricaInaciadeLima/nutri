@@ -2,8 +2,12 @@ package com.api.NutriAcess.services;
 
 import com.api.NutriAcess.dtos.CadastroNutriDto;
 import com.api.NutriAcess.models.CadastroNutriModel;
+import com.api.NutriAcess.models.ConsultaModel;
 import com.api.NutriAcess.repositories.CadastroNutriRepository;
 import jakarta.transaction.Transactional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,7 +33,18 @@ public class CadastroNutriService {
     public boolean existsByCadastroNutriEmail(String email) {
         return cadastroNutriRepository.existsByEmail(email);
     }
+    public Optional<CadastroNutriModel> findById(UUID id) {
+        return cadastroNutriRepository.findById(id);
+    }
 
+    @Transactional
+    public void delete(CadastroNutriModel cadastroNutriModel) {
+        cadastroNutriRepository.delete(cadastroNutriModel);
+    }
+
+    public Page<CadastroNutriModel> findAll(Pageable pageable) {
+        return cadastroNutriRepository.findAll(pageable);
+    }
     //Validar os campos e irá retornar null se estiver tudo ok.
     public ResponseEntity<Object> validarCadastroNutri(CadastroNutriDto cadastroNutriDto) {
         String email = cadastroNutriDto.getEmail();
@@ -41,7 +56,4 @@ public class CadastroNutriService {
         return null;
     }
 
-    public Optional<CadastroNutriModel> findById(UUID id) {
-        return cadastroNutriRepository.findById(id);
-    }
 }

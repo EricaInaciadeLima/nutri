@@ -11,9 +11,8 @@ import java.math.BigDecimal;
 
 public class PlanosDto {
 
-    @NotNull(message = "O campo tipo não pode estar vazio.")
-    @Enumerated(EnumType.STRING)
-    private PlanosModel.Tipo tipo;
+    @NotBlank(message = "O campo tipo não pode estar vazio.")
+    private String tipo;
 
     @NotBlank(message = "O campo duração não pode estar vazio.")
     private String duracao;
@@ -27,11 +26,11 @@ public class PlanosDto {
     private BigDecimal valor;
 
 
-    public PlanosModel.Tipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(PlanosModel.Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -61,10 +60,11 @@ public class PlanosDto {
 
     public PlanosModel parseToEntity() {
         PlanosModel planosModel = new PlanosModel();
-        planosModel.setTipo(this.tipo);
+        planosModel.setTipo(PlanosModel.Tipo.valueOf(this.tipo.toUpperCase()));
         planosModel.setDuracao(this.duracao);
         planosModel.setDescricao(this.descricao);
         planosModel.setValor(this.valor);
+        
         return planosModel;
     }
 }

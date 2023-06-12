@@ -1,6 +1,7 @@
 package com.api.NutriAcess.services;
 
 import com.api.NutriAcess.dtos.PlanosDto;
+import com.api.NutriAcess.models.FormularioModel;
 import com.api.NutriAcess.models.PlanosModel;
 import com.api.NutriAcess.repositories.PlanosRepository;
 import jakarta.transaction.Transactional;
@@ -28,18 +29,22 @@ public class PlanosService {
     public PlanosModel save(PlanosModel planosModel) {
         return planosRepository.save(planosModel);
     }
-
+    //Vai retornar uma lista de todos registros.
     public Optional<PlanosModel> findById(UUID id) {
         return planosRepository.findById(id);
     }
 
-  public ResponseEntity<Object> validarPlanos(PlanosDto planosDto) {
-    
-    PlanosModel.Tipo tipo = planosDto.getTipo();
-    if (tipo != PlanosModel.Tipo.PLUS && tipo != PlanosModel.Tipo.FAMILIA && tipo != PlanosModel.Tipo.PREMIUM) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O tipo fornecido é inválido.");
+    @Transactional
+    public void delete(PlanosModel planosModel) {
+        planosRepository.delete(planosModel);
     }
 
+    public Page<PlanosModel> findAll(Pageable pageable) {
+        return planosRepository.findAll(pageable);
+    }
+
+  public ResponseEntity<Object> validarPlanos(PlanosDto planosDto) {
+    
 
     return null;
 
