@@ -90,17 +90,17 @@ public class FamiliaController {
     if (!familiaModelOptional.isPresent()) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado dados dessa família.");
     }
-    var familiaModel = familiaModelOptional.get();
+    // var familiaModel = familiaModelOptional.get();
 
     // Atualiza os campos da familia
-    familiaModel.setNome(familiaDto.getNome());
-    familiaModel.setIdade(familiaDto.getIdade());
-    familiaModel.setPeso(familiaDto.getPeso());
-    familiaModel.setSexo(FamiliaModel.Sexo.valueOf(familiaDto.getSexo()));
+    // familiaModel.setNome(familiaDto.getNome());
+    // familiaModel.setIdade(familiaDto.getIdade());
+    // familiaModel.setPeso(familiaDto.getPeso());
+    // familiaModel.setSexo(FamiliaModel.Sexo.valueOf(familiaDto.getSexo()));
 
-    // var familiaModel = new ParkingSpotModel();
-    //     BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
-    //     parkingSpotModel.setId(parkingSpotModelOptional.get().getId());
+    var familiaModel = new FamiliaModel();
+        BeanUtils.copyProperties(familiaDto, familiaModel);
+        familiaModel.setId(familiaModelOptional.get().getId());
 
     return ResponseEntity.status(HttpStatus.OK).body(familiaService.save(familiaModel));
   }

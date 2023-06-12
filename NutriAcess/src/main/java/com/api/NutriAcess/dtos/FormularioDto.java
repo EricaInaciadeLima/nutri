@@ -42,7 +42,7 @@ public class FormularioDto {
     private FormularioModel.TempoPreparo tempoPreparo;
 
     @NotNull(message = "O campo foto não pode estar vazio.")
-    private byte[] foto;
+    private String foto;
 
     public String getNome() {
         return nome;
@@ -125,11 +125,11 @@ public class FormularioDto {
         return this;
     }
 
-    public byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public FormularioDto setFoto(byte[] foto) {
+    public FormularioDto setFoto(String foto) {
         this.foto = foto;
         return this;
     }
